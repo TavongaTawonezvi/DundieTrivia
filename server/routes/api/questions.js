@@ -1,13 +1,13 @@
 const express = require ('express');
 const mongodb = require ('mongodb');
-
+require('dotenv').config();
 const router = express.Router();
 
 
 // Connect to the database
 async function loadQuestionsCollections() {
     const client = await mongodb.MongoClient.connect
-    ('mongodb+srv://ttawonezvi13:eGwhbFf9PpFIRvW6@cluster0.gq7ucfk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0');
+    (`mongodb+srv://${process.env.MONGO_CON}.gq7ucfk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`);
 
     return client.db('OfficeTrivia').collection('questions');
 }
